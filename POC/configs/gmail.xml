@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://web-harvest.sourceforge.net/schema/1.0/config"
+	scriptlang="groovy">
+
+	<var-def name="acronym">
+		SPA
+	</var-def>
+
+	<mail smtp-host="smtp.gmail.com" smtp-port="587" type="html"
+		from="gunasekar.rpa@gmail.com" to="gunasekar.rpa@gmail.com" subject="Some test subject"
+		charset="UTF-8" username="gunasekar.rpa@gmail.com" password="SEKAR@2018"
+		security="ssl">
+
+	<file path="C:\Users\gunasekar.c\Desktop\new.xlsx" charset="UTF-8" action="read"></file>
+		
+		</mail>
+
+
+</config>

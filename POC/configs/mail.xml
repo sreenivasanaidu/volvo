@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://web-harvest.sourceforge.net/schema/1.0/config"
+	scriptlang="groovy">
+
+	<robotics-flow>
+
+		<robot driver="internet explorer" name="mail"
+			close-on-completion="false" start-in-private="false">
+			<script><![CDATA[
+				open("https://mail.hcl.com")
+				Thread.sleep(5000)
+
+				driver=mail.getWrappedObject();
+				WebDriverWait wait = new WebDriverWait(driver, 120)
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="rdoPrvt"]'))).click();
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="username"]'))).sendKeys(Keys.HOME,Keys.chord(Keys.SHIFT,Keys.END),"gunasekar.c@hcl.com");
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="password"]'))).sendKeys("SEKAR@2017");
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="tblMid"]/tbody/tr[7]/td/table/tbody/tr[3]/td/input[1]'))).click();
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="tdLng"]/a'))).click();
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="i0281"]/div[1]/div/div[1]/div[2]/div/div/div[2]/div[1]/div/div[2]/div/div[2]'))).click();
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="i0118"]'))).sendKeys("SEKAR@2017");
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="idSIButton9"]'))).click();
+
+				Thread.sleep(5000)
+				
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//*[@id="_ariaId_26"]'))).click();
+				
+				wait.until(ExpectedConditions.visibilityOfElementLocated(byXpath('//button[3][@title="More actions"]'))).click();
+				
+				//wait.until(ExpectedConditions.visibilityOfElementLocated(byText("Save to OneDrive - HCL Technologies Ltd."))).click();
+							driver.navigate().refresh();
+							Thread.sleep(5000)
+								
+			]]></script>
+
+		</robot>
+
+	</robotics-flow>
+
+
+
+	<export include-original-data="true">
+
+		<!-- <multi-column list="${outputItemsList}" split-results="true"> <put-to-column-getter 
+			name="company name" property="company name"></put-to-column-getter> <put-to-column-getter 
+			name="Stock_price" property="Stock_price"></put-to-column-getter> </multi-column> -->
+
+	</export>
+
+
+
+
+</config>

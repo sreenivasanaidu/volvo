@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://web-harvest.sourceforge.net/schema/1.0/config"
+	scriptlang="groovy">
+<var-def name="data">
+	<datastore name="stockcompany" >
+
+		select * from @this
+		
+	</datastore>
+</var-def>
+
+
+	<script><![CDATA[ 
+	
+	
+	println data
+	
+
+	
+	
+	]]></script>
+
+	
+	<export include-original-data="true"></export>
+
+</config>

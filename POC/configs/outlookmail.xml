@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://web-harvest.sourceforge.net/schema/1.0/config">
+    <script>
+        <![CDATA[
+            Map initParamsMap = new HashMap();
+            java.util.concurrent.TimeUnit.SECONDS.sleep(15);
+        ]]>
+    </script>
+ 
+    <loop item="initParam">
+        <list><datastore name="mail">select * from @this;</datastore></list>
+        <body>
+            <template>${initParamsMap.put(initParam.get("key").toString(),initParam.get("value").toString())}</template>
+        </body>
+    </loop>
+ 
+    <script>
+        <![CDATA[
+            Properties connectionProps = new Properties();
+ 
+            for (Object obj : initParamsMap.entrySet()){
+                Map.Entry pair = (Map.Entry) obj;
+                String k = pair.getKey().toString();
+                if (k.startsWith("mail.")) {
+                    connectionProps.put(k, pair.getValue().toString());
+                }
+            }
+        ]]>
+    </script>
+ 
+    <var-def name="new_mails">
+        <mail-check
+            connection-props="${connectionProps}"
+            user='${initParamsMap.get("mail.user.name")}'
+            password='${initParamsMap.get("mail.user.password")}'
+            subject-pattern='${initParamsMap.get("subject-pattern")}'
+            max-messages='${initParamsMap.get("max-messages")}'
+            max-message-size='${initParamsMap.get("max-message-size")}'
+        />
+    </var-def>
+ 
+    <export include-original-data="true">
+        <single-column name="new_mails" value="${new_mails}"/>
+    </export>
+     
+</config>

@@ -1,0 +1,13 @@
+key,value
+mail.store.protocol,imaps
+mail.host,imap-mail.outlook.com
+mail.imaps.port,993
+mail.user.name,gunac2009@outlook.com
+mail.user.password,SEKAR@1991
+subject-pattern,
+max-messages,5
+max-message-size,0
+mail.smtp.host,smtp-mail.outlook.com
+mail.smtp.port,587
+mail.smtp.security,STARTTLS
+mail.notification.reply,gunasekar.rpa@gmail.com

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://web-harvest.sourceforge.net/schema/1.0/config"
+	scriptlang="groovy">
+
+	<var-def name="data">
+		<datastore name="stockcompany">
+
+			Select * from @this
+
+		</datastore>
+
+	</var-def>
+
+
+	<script><![CDATA[
+	
+	println "data-------------"+data
+		/* columns = ["CompanyList"];
+
+		outputItemsList= new ArrayList(); */
+	]]></script>
+
+	<robotics-flow>
+
+		<robot driver="chrome" name="stockweb" close-on-completion="false"
+			start-in-private="true">
+			<script><![CDATA[
+				open("https://finance.yahoo.com/")
+				Thread.sleep(5000)
+
+				driver=stockweb.getWrappedObject();
+				WebDriverWait wait = new WebDriverWait(driver, 120)
+
+
+
+				map = new HashMap();
+
+
+
+				for(test in data){
+
+					//println test.CompanyList.toString()
+
+
+					//$(byAttribute("aria-label", "Search")).sendKeys(Keys.HOME,Keys.chord(Keys.SHIFT,Keys.END),test.CompanyList.toString())
+					wait.until(ExpectedConditions.visibilityOfElementLocated(byAttribute("aria-label", "Search"))).sendKeys(Keys.HOME,Keys.chord(Keys.SHIFT,Keys.END),test.CompanyList.toString())
+					//Thread.sleep(5000)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(byId("search-buttons"))).click()
+					Thread.sleep(5000)
+					String Stock_price = $(byXpath('//*[@id="quote-header-info"]/div[3]/div/div/span[1]')).getText();
+					String company_name = test.CompanyList.toString();
+
+					//Thread.sleep(5000)
+					/* outputItemsList.add(Stock_price);
+					 outputItemsList.add(test.CompanyList.toString()); */
+
+
+					map.put("Stock_price", Stock_price);
+					map.put("company name", company_name);
+
+
+
+					println "Stock_price-----------"+Stock_price
+					println "company name-----------"+company_name
+
+					println map
+
+
+
+
+				}
+
+				outputItemsList.add(map);
+				println "Stock_Map-----------"+map
+
+				println "Stock_LIst-----------"+outputItemsList
+			]]></script>
+
+
+		</robot>
+
+	</robotics-flow>
+
+
+
+	<export include-original-data="true">
+
+		<!-- <multi-column list="${outputItemsList}" split-results="true"> <put-to-column-getter 
+			name="company name" property="company name"></put-to-column-getter> <put-to-column-getter 
+			name="Stock_price" property="Stock_price"></put-to-column-getter> </multi-column> -->
+
+	</export>
+
+
+
+
+</config>

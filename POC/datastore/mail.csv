@@ -1,0 +1,13 @@
+key,value
+mail.store.protocol,imaps
+mail.host,imap-mail.outlook.com
+mail.imaps.port,993
+mail.user.name,gunasekar.c@hcl.com
+mail.user.password,SEKAR@2017
+subject-pattern,Invoice
+max-messages,5
+max-message-size,0
+mail.smtp.host,smtp-mail.outlook.com
+mail.smtp.port,587
+mail.smtp.security,TLS
+mail.notification.reply,gunasekar.rpa@gmail.com
