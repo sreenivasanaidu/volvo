@@ -6,9 +6,6 @@
 		import com.workfusion.studio.rpa.recorder.api.*
 		import com.workfusion.studio.rpa.recorder.api.types.*
 		enableTypeOnScreen()
-
-
-
 		openExcel("C:\\Users\\gunasekar.c\\Desktop\\stockcompany.xlsx")
 		try {
 
@@ -21,8 +18,7 @@
 
 		openChrome(UrlOperations.ensureProtocol("https://www.google.co.in/search?rlz=1C1CHZL_enIN785IN785&ei=nQmxWvK5HsPivATwiqT4BQ&q=currency+convertor&oq=currency+convertor&gs_l=psy-ab.12...0.0.0.27807.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.SUS_z68F0SQ"))
 		sleep(5000)
-
-
+		
 		$(byXpath("//*[@id=\"knowledge-currency__src-input\"]")).setValue(String.valueOf(input))
 
 
